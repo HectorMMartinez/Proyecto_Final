@@ -44,7 +44,7 @@ CREATE TABLE cv (
     disponibilidad VARCHAR(50),
     objetivo TEXT,
     foto VARCHAR(255),
-    cv_pdf VARCHAR(255),
+    cv_pdf longblob,
     FOREIGN KEY (candidato_id) REFERENCES candidatos(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
@@ -148,6 +148,7 @@ CREATE TABLE ofertas (
 -- ================================================
 -- 7. Aplicaciones a ofertas
 -- ================================================
+
 CREATE TABLE aplicaciones (
     id INT AUTO_INCREMENT PRIMARY KEY,
     candidato_id INT,
@@ -162,15 +163,6 @@ CREATE TABLE aplicaciones (
 -- ================================================
 -- 8. Logs y notificaciones unificados por usuario
 -- ================================================
-CREATE TABLE logs (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    usuario_id INT,
-    accion VARCHAR(255) NOT NULL,
-    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
-    detalles TEXT,
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE,
-    KEY idx_usuario (usuario_id)
-) ENGINE=InnoDB;
 
 CREATE TABLE notificaciones (
     id INT AUTO_INCREMENT PRIMARY KEY,
